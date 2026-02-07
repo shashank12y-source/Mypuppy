@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>For Sahana 💖</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(180deg, #ff758c, #ff7eb3);
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    margin: 25px 10px 10px;
+    font-size: 2.2rem;
+  }
+
+  .card {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  }
+
+  img {
+    width: 100%;
+    border-radius: 20px;
+    margin: 10px 0;
+  }
+
+  .btn {
+    width: 85%;
+    max-width: 300px;
+    padding: 16px;
+    margin: 10px auto;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.25s;
+  }
+
+  .btn:active {
+    transform: scale(0.95);
+  }
+
+  #openBtn {
+    background: #ff4b5c;
+  }
+
+  #yesBtn {
+    background: #ff1e56;
+    font-size: 1.3rem;
+  }
+
+  #noBtn {
+    background: #555;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .surprise {
+    display: none;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform:scale(0.95);}
+    to {opacity:1; transform:scale(1);}
+  }
+
+  /* floating hearts */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    animation: float 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    0% {transform: translateY(0); opacity:0;}
+    10% {opacity:1;}
+    100% {transform: translateY(-100vh); opacity:0;}
+  }
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<h1>Hey Sahana 💕</h1>
+
+<div class="card">
+  <p style="font-size:1.1rem;">Tap below… there’s something for you 💝</p>
+  <button id="openBtn" class="btn" onclick="showSurprise()">Open Surprise</button>
+
+  <div id="surprise" class="surprise">
+    <!-- REAL IMAGES -->
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+
+    <h2 style="margin-top:15px;">Sahana, will you be my Valentine? 💘</h2>
+
+    <button id="yesBtn" class="btn" onclick="yesClicked()">YES ❤️</button>
+    <button id="noBtn" class="btn" onclick="moveNo()">NO 😜</button>
+  </div>
+</div>
+
+<script>
+  let yesScale = 1;
+
+  function showSurprise() {
+    document.getElementById("surprise").style.display = "block";
+  }
+
+  function moveNo() {
+    const no = document.getElementById("noBtn");
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    no.style.left = x + "px";
+    no.style.top = y + "px";
+
+    yesScale += 0.15;
+    document.getElementById("yesBtn").style.transform =
+      `scale(${yesScale})`;
+  }
+
+  function yesClicked() {
+    document.body.innerHTML = `
+      <h1>Yayyy Sahana 😍💖</h1>
+      <p style="font-size:1.4rem;">You just made me the happiest ❤️</p>
+      <img src="https://media.giphy.com/media/11k3oaUjSlFR4I/giphy.gif"
+           style="width:85%;border-radius:20px;">
+      <p style="font-size:1.2rem;">Happy Valentine’s Day 💕</p>
+    `;
+  }
+
+  // hearts
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },300);
+</script>
+
+</body>
+</html>
